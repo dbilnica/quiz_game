@@ -3,12 +3,11 @@ package Quiz;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class QuestionQeneral extends Answer{
+public abstract class QuestionQeneral {
     private String questionText;
     private List<Answer> answers;
 
-    public QuestionQeneral(String answer, boolean isCorrect,String questionText, List<Answer> answers) {
-        super(answer, isCorrect);
+    public QuestionQeneral(String questionText, List<Answer> answers) {
         this.questionText = questionText;
         this.answers = answers;
     }
@@ -20,4 +19,8 @@ public abstract class QuestionQeneral extends Answer{
     public List<Answer> getAnswers() {
         return answers;
     }
+
+    public abstract String getQuestionType();
+
+    public abstract boolean isAnswerCorrect(List<Integer> answers);
 }
