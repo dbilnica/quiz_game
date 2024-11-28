@@ -1,5 +1,6 @@
 package Quiz;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class SingleQuestionType  extends  QuestionQeneral{
@@ -14,12 +15,16 @@ public class SingleQuestionType  extends  QuestionQeneral{
     }
 
     @Override
-    public boolean isAnswerCorrect(List<Integer> answers) {
+    public boolean isAnswerCorrect(List<Character> answers) {
         if(answers.size() != 1){
             return false;
         }
-        int getAnswerIndex = answers.get(0);
-        Answer choosedAnswer = getAnswers().get(getAnswerIndex);
-        return choosedAnswer.isCorrect();
+        Character selectedOption =  answers.get(0);
+        for(Answer answer : getAnswers()){
+            if (answer.getCharOption() == (selectedOption)){
+                return answer.isCorrect();
+            }
+        }
+        return false;
     }
 }

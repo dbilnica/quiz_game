@@ -14,14 +14,18 @@ public class MultipleQuestionType extends QuestionQeneral{
     }
 
     @Override
-    public boolean isAnswerCorrect(List<Integer> answers) {
+    public boolean isAnswerCorrect(List<Character> answers) {
         if(answers.isEmpty()){
             return false;
         }
-        for(int answer: answers){
-            Answer choosedAnswer = getAnswers().get(answer);
-            return choosedAnswer.isCorrect();
+        boolean allCoorect = true;
+        for(char selectedOption: answers) {
+            for (Answer answer : getAnswers()) {
+                if(answer.getCharOption() != (selectedOption)){
+                    allCoorect = false;
+                }
+            }
         }
-        return  false;
+        return allCoorect;
     }
 }

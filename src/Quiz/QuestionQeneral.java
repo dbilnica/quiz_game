@@ -1,6 +1,5 @@
 package Quiz;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class QuestionQeneral {
@@ -22,5 +21,5 @@ public abstract class QuestionQeneral {
 
     public abstract String getQuestionType();
 
-    public abstract boolean isAnswerCorrect(List<Integer> answers);
+    public abstract boolean isAnswerCorrect(List<Character> answers);
 }
