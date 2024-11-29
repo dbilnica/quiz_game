@@ -18,11 +18,17 @@ public class MultipleQuestionType extends QuestionQeneral{
         if(answers.isEmpty()){
             return false;
         }
+        int correctAnswersCount = (int)getAnswers().stream().filter(Answer::isCorrect).count();
+        if(answers.size() != correctAnswersCount) {
+            return false;
+        }
         boolean allCoorect = true;
         for(char selectedOption: answers) {
             for (Answer answer : getAnswers()) {
-                if(answer.getCharOption() != (selectedOption)){
-                    allCoorect = false;
+                if(answer.getCharOption() == (selectedOption)){
+                    if(!answer.isCorrect()){
+                        allCoorect = false;
+                    }
                 }
             }
         }

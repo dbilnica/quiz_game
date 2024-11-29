@@ -13,7 +13,8 @@ public class Main {
     public static void main(String[] args) {
         int score = 0;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Hello there!");
+        quizIntro(scanner);
+        clearConsole();
         List<QuestionQeneral> questions = new ArrayList<>();
         questions.add(new SingleQuestionType("What's the capital of Czech Republic?", List.of(
                 new Answer('a', "Berlin", false),
@@ -30,6 +31,7 @@ public class Main {
                 new Answer('b', "False", false))));
 
         System.out.println("Enter you answers (comma-separated-values only) e.q. a,b,c");
+        System.out.println();
         for (int questionOder = 0; questionOder < questions.size(); questionOder++) {
             QuestionQeneral question = questions.get(questionOder);
             System.out.println("Question " + (questionOder + 1) + " - " + question.getQuestionType());
@@ -51,18 +53,30 @@ public class Main {
                         }
                         userAnswer.add(answer.charAt(0));
                     }
+                    System.out.println("Your answer is: " + userAnswer);
                     if(question.isAnswerCorrect(userAnswer)){
+                        score++;
                         System.out.println("Correct answer!");
                     } else{
                         System.out.println("Wrong answer!");
                     }
-
-                    System.out.println("Your answer is: " + userAnswer);
                     validFormat = true;
                 } catch (Exception e) {
                     System.out.println("Invalid input: " + e.getMessage());
                 }
             }
         }
+        System.out.println();
+        System.out.println("You've reached score: " + score + "/" + questions.size());
+    }
+    static void clearConsole() {
+        for(int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+    }
+    static void quizIntro(Scanner scanner) {
+        System.out.println("Welcome in the Quiz game!");
+        System.out.println("Please press ENTER to continue...");
+        scanner.nextLine();
     }
 }
